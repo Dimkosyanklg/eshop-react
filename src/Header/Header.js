@@ -6,18 +6,18 @@ import { MENU_BUTTONS } from "./MENU_BUTTONS.js";
 const Header = () => (
   <HeaderContainer>
     <HeaderTopContainer>
-      <img src="Header_Icons/GitHub-Mark-Light-120px-plus.png" alt="" />
+      <img src="/headerIcons/GitHubMark.png" alt="" />
       <SearchBar>
         <form>
           <input type="search" />
           <button type="submit">
-            <img src="Header_Icons/iconfinder_search_1608826.png" alt="" />
+            <img src="/headerIcons/SearchIcon.png" alt="" />
           </button>
         </form>
       </SearchBar>
       <ShoppingCartBlock>
         <Link to="/cart">
-          <img src="Header_Icons/iconfinder_shopping-cart.png" alt="" />
+          <img src="/headerIcons/ShoppingCartIcon.png" alt="" />
         </Link>
       </ShoppingCartBlock>
     </HeaderTopContainer>

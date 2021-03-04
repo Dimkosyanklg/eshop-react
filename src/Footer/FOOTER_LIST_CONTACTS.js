@@ -18,11 +18,11 @@ export const FOOTER_LIST_CONTACTS = [
         upper: "Мы в соцсетях",
         lower: (
           <>
-            <img src="Footer_Icons/fb.svg" alt="" />
-            <img src="Footer_Icons/vk.svg" alt="" />
-            <img src="Footer_Icons/insta.svg" alt="" />
-            <img src="Footer_Icons/ok.svg" alt="" />
-            <img src="Footer_Icons/youtube.svg" alt="" />
+            <img src="/footerIcons/Fb.svg" alt="" />
+            <img src="/footerIcons/Vk.svg" alt="" />
+            <img src="/footerIcons/Insta.svg" alt="" />
+            <img src="/footerIcons/Ok.svg" alt="" />
+            <img src="/footerIcons/Youtube.svg" alt="" />
           </>
         ),
       },
@@ -30,8 +30,8 @@ export const FOOTER_LIST_CONTACTS = [
         upper: "Скачайте наше приложение",
         lower: (
           <>
-            <img src="Footer_Icons/apple-store-badge.png" alt="" />
-            <img src="Footer_Icons/google-play-badge.png" alt="" />
+            <img src="/footerIcons/AppleStoreBadge.png" alt="" />
+            <img src="/footerIcons/GooglePlayBadge.png" alt="" />
           </>
         ),
       },

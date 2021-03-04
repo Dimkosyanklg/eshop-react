@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route } from "react-router-dom";
-import MainPage from "./Main/MainPage.js";
-import { AppContextProvider } from "./App_Context/AppContext.js";
-import CatalogPage from "./Pages/Catalog/CatalogPage.js";
+import MainPage from "./main/MainPage.js";
+import { AppContextProvider } from "./appContext/AppContext.js";
+import CatalogPage from "./pages/catalog/CatalogPage.js";
 
 ReactDOM.render(
   <BrowserRouter>

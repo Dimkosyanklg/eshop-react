@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { CATALOG_BACKPACKS } from "../Store/CATALOG_BACKPACKS.js";
-import { CATALOG_SOCCERBALLS } from "../Store/CATALOG_SOCCERBALLS.js";
+import { CATALOG_BACKPACKS } from "../store/CATALOG_BACKPACKS.js";
+import { CATALOG_SOCCERBALLS } from "../store/CATALOG_SOCCERBALLS.js";
 
 const AppContext = React.createContext(null);
 

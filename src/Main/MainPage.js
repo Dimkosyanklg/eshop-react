@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import Footer from "../Footer/Footer.js";
-import Header from "../Header/Header.js";
-import { GLOBAL_STYLE } from "../Global_Style/GLOBAL_STYLE.js";
-import { AppContext } from "../App_Context/AppContext.js";
+import Footer from "../footer/Footer.js";
+import Header from "../header/Header.js";
+import { GLOBAL_STYLE } from "../globalStyle/GLOBAL_STYLE.js";
+import { AppContext } from "../appContext/AppContext.js";
 
 const MainPage = () => {
   const store = useContext(AppContext);
