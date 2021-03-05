@@ -76,7 +76,7 @@ const SearchBar = styled.div`
   }
   input {
     height: 100%;
-    width: 90%;
+    width: 93%;
     outline: none;
     border: 0;
     border-radius: 0.4rem 0 0 0.4rem;
@@ -84,14 +84,16 @@ const SearchBar = styled.div`
   }
   button {
     height: 100%;
-    width: 10%;
+    width: 7%;
     outline: none;
     border: 0;
     padding: 0;
     border-radius: 0 0.4rem 0.4rem 0;
     cursor: pointer;
     img {
-      height: 40%;
+      height: 35%;
+      width: 35%;
+      object-fit: contain;
     }
   }
 `;

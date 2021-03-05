@@ -5,10 +5,10 @@ import { CATALOG_SOCCERBALLS } from "../store/CATALOG_SOCCERBALLS.js";
 const AppContext = React.createContext(null);
 
 const AppContextProvider = (props) => {
-  const [store, setStore] = useState({
+  const [store, setStore] = useState([
     CATALOG_BACKPACKS,
     CATALOG_SOCCERBALLS,
-  });
+  ]);
   return <AppContext.Provider value={store}>{props.children}</AppContext.Provider>;
 };
 
