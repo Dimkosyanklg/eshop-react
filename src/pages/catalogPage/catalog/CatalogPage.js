@@ -10,7 +10,8 @@ import { AppContext } from "../../../appContext/AppContext.js";
 
 const CatalogPage = () => {
   const { type } = useParams();
-  const store = useContext(AppContext);
+  const { store, cart } = useContext(AppContext);
+  const qwe = useContext(AppContext);
   const [filters, setFilters] = useState({
     firms: [],
     price: { from: "", to: "" },
@@ -33,7 +34,7 @@ const CatalogPage = () => {
     <>
       <GLOBAL_STYLE />
       <Header />
-      <PageContainer>
+      <PageContainer onClick={() => console.log(cart)}>
         <Catalog goodsItem={goodsItem} filters={filters} />
         <Sidebar goodsItem={goodsItem} getFilters={getFilters} />
       </PageContainer>

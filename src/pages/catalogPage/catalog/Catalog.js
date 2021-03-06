@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import ToCart from "./ToCart.js";
 
 const Catalog = (props) => {
+  /* ------------------------------------------------------------------- */
   let { price: filterPrice, firms: filterFirms } = props.filters;
   filterFirms = !filterFirms.length
     ? (filterFirms = Array.from(
@@ -17,16 +19,21 @@ const Catalog = (props) => {
       price <= Number(filterPrice.to)
     );
   });
-
+  /* ---------------------------------------------------------------------------- */
   return (
-    <CatalogContainer onClick={() => console.log(props.filters)}>
-      {renderGoodsItem.map(({ id, name, price, imgSrc }) => (
+    <CatalogContainer>
+      {renderGoodsItem.map(({ id, name, price, imgSrc, firm }) => (
         <CatalogItem key={id}>
           <CatalogItemImage>
             <img src={imgSrc} alt="" />
           </CatalogItemImage>
           <CatalogItemName>{name}</CatalogItemName>
-          <CatalogItemPrice>{`${price} ₽`}</CatalogItemPrice>
+          <PricePlusToCart>
+            <CatalogItemPrice>{`${price} ₽`}</CatalogItemPrice>
+            <ToCartContainer>
+              <ToCart goodsItem={{ id, name, price, imgSrc, firm }} />
+            </ToCartContainer>
+          </PricePlusToCart>
         </CatalogItem>
       ))}
     </CatalogContainer>
@@ -68,8 +75,22 @@ const CatalogItemName = styled.div`
   font-size: 1rem;
 `;
 const CatalogItemPrice = styled.div`
-  height: 10%;
+  width: 40%;
   font-size: 1rem;
+`;
+const ToCartContainer = styled.div`
+  width: 37%;
+  margin-right: 3%;
+
+  ${CatalogItem}:hover & > * {
+    visibility: visible;
+    opacity: 1;
+  }
+`;
+const PricePlusToCart = styled.div`
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export default Catalog;
