@@ -1,19 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../appContext/AppContext";
 import PriceQuantitySum from "./PriceQuantitySum.js";
 
-const CartContent = () => {
+const CartContent = (props) => {
   const { cart, removeFromCart } = useContext(AppContext);
   const [sum, setSum] = useState({});
   const addToSum = (name, value) => {
-    setSum(Object.assign(sum, {[name]: value}));
+    setSum(Object.assign(sum, { [name]: value }));
   };
   const removeFromSum = (name) => {
     delete sum[name];
-  }
+  };
+  useEffect(() => {
+    props.getPrices(sum);
+  }, [sum]);
   return (
-    <ItemsBody onClick={()=>{console.log(sum);}}>
+    <ItemsBody>
       {cart.map((item) => (
         <ItemContainer key={item.name}>
           <Item>
@@ -37,7 +40,11 @@ const CartContent = () => {
             </form>
           </Receiving>
           {/* Объединил Price, Quantity и Sum для того, чтобы сумму считать */}
-          <PriceQuantitySum item={item} addToSum={addToSum} removeFromSum={removeFromSum}></PriceQuantitySum>
+          <PriceQuantitySum
+            item={item}
+            addToSum={addToSum}
+            removeFromSum={removeFromSum}
+          ></PriceQuantitySum>
           <RemoveButton
             onClick={() => {
               removeFromCart(item);

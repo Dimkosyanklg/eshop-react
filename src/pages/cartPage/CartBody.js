@@ -5,11 +5,15 @@ import CartContent from "./CartContent.js";
 import CartFooter from "./CartFooter.js";
 
 const CartBody = () => {
+  const [prices, setPrices] = useState({})
+  const getPrices = (value) => {
+    setPrices(value);
+  }
   return (
     <CartContainer>
       <CartHeader />
-      <CartContent />
-      <CartFooter />
+      <CartContent getPrices={getPrices} />
+      <CartFooter prices={prices} />
     </CartContainer>
   );
 };

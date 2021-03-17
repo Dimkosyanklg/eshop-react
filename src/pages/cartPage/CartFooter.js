@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-const CartFooter = () => {
+const CartFooter = (props) => {
+  const [sum, setSum] = useState(0);
+  useEffect(() => {
+    let prices = 0;
+    for (let price of Object.values(props.prices)) {
+      prices += price;
+    }
+    setSum(prices);
+  }, [props.prices]);
   return (
-    <CartFooterContainer>
+    <CartFooterContainer
+      onClick={() => {
+        console.log(props.prices);
+      }}
+    >
       <BannersContainer>
         <Banner>Тут какой-то баннер</Banner>
         <Banner>Тут какой-то баннер</Banner>
@@ -11,11 +23,11 @@ const CartFooter = () => {
       <PromoContainer>
         <h3>Промокод:</h3>
         <Promo>
-          <PromoInput type="text"/>
+          <PromoInput type="text" />
           <PromoButton>Применить</PromoButton>
         </Promo>
       </PromoContainer>
-      <OrderContainer />
+      <OrderContainer>{sum}</OrderContainer>
     </CartFooterContainer>
   );
 };
