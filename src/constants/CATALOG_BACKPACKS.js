@@ -1,6 +1,5 @@
 export const CATALOG_BACKPACKS = {
-  type: "tourism",
-  item: [
+  goodsItem: [
     {
       id: 1,
       name: "Xiaomi Mi Classic Business Backpack",

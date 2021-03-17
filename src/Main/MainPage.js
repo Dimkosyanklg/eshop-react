@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Footer from "../footer/Footer.js";
 import Header from "../header/Header.js";
-import { GLOBAL_STYLE } from "../globalStyle/GLOBAL_STYLE.js";
+import { GLOBAL_STYLE } from "../constants/GLOBAL_STYLE.js";
 
 const MainPage = () => {
   return (

@@ -7,7 +7,7 @@ const SidebarFirms = (props) => {
   useEffect(() => {
     setFirms(
       Array.from(
-        new Set(props.goodsItem.item.map((element) => element.firm))
+        new Set(props.goodsItem.map((element) => element.firm))
       ).map((firm, index) => ({ label: firm, id: index, checked: false }))
     );
   }, [props.goodsItem.type]);

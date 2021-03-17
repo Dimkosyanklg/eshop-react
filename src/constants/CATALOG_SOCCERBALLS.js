@@ -1,6 +1,5 @@
 export const CATALOG_SOCCERBALLS = {
-  type: "sport",
-  item: [
+  goodsItem: [
     {
       id: 1,
       name: "Nike RPL NK STRK - FA20",

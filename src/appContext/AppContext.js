@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { CATALOG_BACKPACKS } from "../store/CATALOG_BACKPACKS.js";
-import { CATALOG_SOCCERBALLS } from "../store/CATALOG_SOCCERBALLS.js";
+import { CATALOG_BACKPACKS } from "../constants/CATALOG_BACKPACKS.js";
+import { CATALOG_SOCCERBALLS } from "../constants/CATALOG_SOCCERBALLS.js";
 import { findIndex } from "lodash";
 
 const AppContext = React.createContext(null);
 
 const AppContextProvider = (props) => {
-  const [store, setStore] = useState([CATALOG_BACKPACKS, CATALOG_SOCCERBALLS]);
+  const [store, setStore] = useState({
+    sport: CATALOG_SOCCERBALLS,
+    tourism: CATALOG_BACKPACKS,
+  });
   const [cart, setCart] = useState([]);
 
   const addToCart = (value) => {

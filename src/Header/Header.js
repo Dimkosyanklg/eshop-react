@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import { AppContext } from "../appContext/AppContext.js";
-import { MENU_BUTTONS } from "./MENU_BUTTONS.js";
+import { MENU_BUTTONS } from "../constants/MENU_BUTTONS.js";
 
 const Header = () => {
   const { cart } = useContext(AppContext);

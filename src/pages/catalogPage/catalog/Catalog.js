@@ -7,12 +7,13 @@ const Catalog = (props) => {
   let { price: filterPrice, firms: filterFirms } = props.filters;
   filterFirms = !filterFirms.length
     ? (filterFirms = Array.from(
-        new Set(props.goodsItem.item.map((element) => element.firm))
+        new Set(props.goodsItem.map((element) => element.firm))
       ))
     : filterFirms;
+  /* -------------------------------------------------------------------- */
   filterPrice.from = !filterPrice.from ? 0 : filterPrice.from;
   filterPrice.to = !filterPrice.to ? Infinity : filterPrice.to;
-  const renderGoodsItem = props.goodsItem.item.filter(({ price, firm }) => {
+  const renderGoodsItem = props.goodsItem.filter(({ price, firm }) => {
     return (
       filterFirms.includes(firm) &&
       price >= Number(filterPrice.from) &&

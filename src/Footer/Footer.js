@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { FOOTER_LIST } from "./FOOTER_LIST.js";
-import { FOOTER_LIST_CONTACTS } from "./FOOTER_LIST_CONTACTS.js";
+import { FOOTER_LIST } from "../constants/FOOTER_LIST.js";
+import { FOOTER_LIST_CONTACTS } from "../constants/FOOTER_LIST_CONTACTS.js";
 
 const Footer = () => (
   <FooterContainer>
