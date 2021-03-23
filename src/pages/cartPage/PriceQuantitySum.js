@@ -13,7 +13,7 @@ const PriceQuantitySum = (props) => {
     setSum(props.item.price * quantity.value);
   }, [quantity.value]);
   useEffect(() => {
-    props.addToSum(props.item.name, sum);
+    props.addToSums(props.item.name, sum);
   }, [sum]);
 
   return (

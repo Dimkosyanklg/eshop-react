@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const CartFooter = (props) => {
-  const [sum, setSum] = useState(0);
-  useEffect(() => {
-    let prices = 0;
-    for (let price of Object.values(props.prices)) {
-      prices += price;
-    }
-    setSum(prices);
-  }, [props.prices]);
+  // const calculateSums = () => {
+  //   let prices = 0;
+  //   for (let price of Object.values(props.sums.goods)) {
+  //     prices += price;
+  //   }
+  //   return prices;
+  // };
   return (
-    <CartFooterContainer
-      onClick={() => {
-        console.log(props.prices);
-      }}
-    >
+    <CartFooterContainer>
       <BannersContainer>
         <Banner>Тут какой-то баннер</Banner>
         <Banner>Тут какой-то баннер</Banner>
@@ -27,7 +22,7 @@ const CartFooter = (props) => {
           <PromoButton>Применить</PromoButton>
         </Promo>
       </PromoContainer>
-      <OrderContainer>{sum}</OrderContainer>
+      {/* <OrderContainer>{calculateSums()}</OrderContainer> */}
     </CartFooterContainer>
   );
 };

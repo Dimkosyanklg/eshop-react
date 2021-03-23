@@ -5,19 +5,42 @@ import PriceQuantitySum from "./PriceQuantitySum.js";
 
 const CartContent = (props) => {
   const { cart, removeFromCart } = useContext(AppContext);
-  const [sum, setSum] = useState({});
-  const addToSum = (name, value) => {
-    setSum(Object.assign(sum, { [name]: value }));
-  };
-  const removeFromSum = (name) => {
-    delete sum[name];
+  const [sums, setSums] = useState({ goods: {} });
+  const [radio, setRadio] = useState([]);
+
+  useEffect(() => {
+    let temp = cart.map((item) => {
+      return { label: item.name, pickup: true, delivery: false };
+    });
+    setRadio(temp);
+  }, []);
+  const radioHandler = (currentName) => {
+    setRadio(
+      radio.map(({ label, pickup, delivery }) =>
+        currentName === label
+          ? { label: label, pickup: !pickup, delivery: !delivery }
+          : { label, pickup, delivery }
+      )
+    );
   };
   useEffect(() => {
-    props.getPrices(sum);
-  }, [sum]);
+    props.getRadio(radio);
+  }, [radio]);
+  useEffect(() => {console.log(123)}, [sums])
+
+  const addToSums = (name, value) => {
+    setSums({
+      goods: Object.assign(sums.goods, { [name]: { label: name, sum: value } }),
+    });
+  };
+  const removeFromSums = (name) => {
+    delete sums.goods[name];
+    setSums(sums);
+  };
+
   return (
-    <ItemsBody>
-      {cart.map((item) => (
+    <ItemsBody onClick={() => {console.log(sums)}}>
+      {cart.map((item, index) => (
         <ItemContainer key={item.name}>
           <Item>
             <ItemImage>
@@ -27,28 +50,41 @@ const CartContent = (props) => {
           </Item>
           <Receiving>
             <form>
-              <RadioBlock>
+              <RadioBlock
+                onClick={() => {
+                  radio.forEach((item) => {});
+                }}
+              >
                 <label>
-                  <input type="radio" name="receive" defaultChecked />
+                  <input
+                    type="radio"
+                    name="receive"
+                    onChange={() => {
+                      radioHandler(item.name);
+                    }}
+                    defaultChecked
+                  />
                   Самовывоз
                 </label>
                 <label>
-                  <input type="radio" name="receive" />
+                  <input
+                    type="radio"
+                    name="receive"
+                    onChange={() => {
+                      radioHandler(item.name);
+                    }}
+                  />
                   Доставка курьером или в пункт выдачи заказов
                 </label>
               </RadioBlock>
             </form>
           </Receiving>
           {/* Объединил Price, Quantity и Sum для того, чтобы сумму считать */}
-          <PriceQuantitySum
-            item={item}
-            addToSum={addToSum}
-            removeFromSum={removeFromSum}
-          ></PriceQuantitySum>
+          <PriceQuantitySum item={item} addToSums={addToSums} />
           <RemoveButton
             onClick={() => {
               removeFromCart(item);
-              removeFromSum(item.name);
+              removeFromSums(item.name);
             }}
           >
             Убрать из корзины
