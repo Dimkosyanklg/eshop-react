@@ -57,6 +57,7 @@ const CartFooter = (props) => {
             <OrderTitle>ИТОГО</OrderTitle>
             <OrderValue>{`${prices.sum} ₽`}</OrderValue>
           </OrderBlock>
+          <OrderButton>Продолжить</OrderButton>
         </OrderContainer>
       </CartFooterContainer>
     );
@@ -125,6 +126,7 @@ const OrderBlock = styled.div`
   width: 100%;
   display: flex;
   height: 15%;
+  font-weight: 600;
 `;
 const OrderTitle = styled.div`
   width: 60%;
@@ -133,6 +135,19 @@ const OrderTitle = styled.div`
 const OrderValue = styled.div`
   width: 30%;
   text-align: right;
+`;
+const OrderButton = styled.div`
+  width: 100%;
+  height: 15%;
+  color: #ffffff;
+  border: 0.2rem solid #cc0000;
+  border-radius: 0.5rem;
+  background-color: #e60000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
 `;
 
 export default CartFooter;
