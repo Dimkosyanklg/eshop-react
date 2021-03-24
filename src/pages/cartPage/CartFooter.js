@@ -1,30 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const CartFooter = (props) => {
-  // const calculateSums = () => {
-  //   let prices = 0;
-  //   for (let price of Object.values(props.sums.goods)) {
-  //     prices += price;
-  //   }
-  //   return prices;
-  // };
-  return (
-    <CartFooterContainer>
-      <BannersContainer>
-        <Banner>Тут какой-то баннер</Banner>
-        <Banner>Тут какой-то баннер</Banner>
-      </BannersContainer>
-      <PromoContainer>
-        <h3>Промокод:</h3>
-        <Promo>
-          <PromoInput type="text" />
-          <PromoButton>Применить</PromoButton>
-        </Promo>
-      </PromoContainer>
-      {/* <OrderContainer>{calculateSums()}</OrderContainer> */}
-    </CartFooterContainer>
-  );
+  const getPrices = (item) => {
+    if (!item.length) {
+      return { pickup: 0, delivery: 0, sum: 0 };
+    } else {
+      let temp = {};
+      let tempPickup = item.filter((obj) => obj.pickup);
+      if (tempPickup.length) {
+        temp.pickup = tempPickup.reduce((sum, obj) => sum + obj.sum, 0);
+      } else {
+        temp.pickup = 0;
+      }
+      let tempDelivery = item.filter((obj) => obj.delivery);
+      if (tempDelivery.length) {
+        temp.delivery = tempDelivery.reduce((sum, obj) => sum + obj.sum, 0);
+      } else {
+        temp.delivery = 0;
+      }
+      temp.sum = temp.pickup + temp.delivery;
+      return temp;
+    }
+  };
+  const [prices, setPrices] = useState({ pickup: 0, delivery: 0, sum: 0 });
+  useEffect(() => {
+    setPrices(getPrices(props.cartItems));
+  }, [props.cartItems]);
+  if (props.cartItems.length) {
+    return (
+      <CartFooterContainer>
+        <BannersContainer>
+          <Banner>Тут какой-то баннер</Banner>
+          <Banner>Тут какой-то баннер</Banner>
+        </BannersContainer>
+        <PromoContainer>
+          <h3>Промокод:</h3>
+          <Promo>
+            <PromoInput type="text" />
+            <PromoButton>Применить</PromoButton>
+          </Promo>
+        </PromoContainer>
+        <OrderContainer>
+          <OrderBlock>
+            <OrderTitle>Сумма заказов:</OrderTitle>
+          </OrderBlock>
+          <OrderBlock>
+            <OrderTitle>на самовывоз</OrderTitle>
+            <OrderValue>{`${prices.pickup} ₽`}</OrderValue>
+          </OrderBlock>
+          <OrderBlock>
+            <OrderTitle>с доставкой</OrderTitle>
+            <OrderValue>{`${prices.delivery} ₽`}</OrderValue>
+          </OrderBlock>
+          <OrderBlock>
+            <OrderTitle>ИТОГО</OrderTitle>
+            <OrderValue>{`${prices.sum} ₽`}</OrderValue>
+          </OrderBlock>
+        </OrderContainer>
+      </CartFooterContainer>
+    );
+  } else return false;
 };
 
 const CartFooterContainer = styled.div`
@@ -84,6 +120,19 @@ const PromoButton = styled.button`
 
 const OrderContainer = styled.div`
   width: 30%;
+`;
+const OrderBlock = styled.div`
+  width: 100%;
+  display: flex;
+  height: 15%;
+`;
+const OrderTitle = styled.div`
+  width: 60%;
+  text-align: right;
+`;
+const OrderValue = styled.div`
+  width: 30%;
+  text-align: right;
 `;
 
 export default CartFooter;

@@ -5,19 +5,15 @@ import CartContent from "./CartContent.js";
 import CartFooter from "./CartFooter.js";
 
 const CartBody = () => {
-  const [sums, setSums] = useState({ goods: {} });
-  const [radio, setRadio] = useState([]);
-  const getSums = (value) => {
-    setSums(value);
+  const [cartItems, setCartItems] = useState([]);
+  const getCartItems = (value) => {
+    setCartItems(value);
   };
-  const getRadio = (value) => {
-    setRadio(value);
-  }
   return (
     <CartContainer>
       <CartHeader />
-      <CartContent getSums={getSums} getRadio={getRadio} />
-      <CartFooter sums={sums} radio={radio} />
+      <CartContent getCartItems={getCartItems} />
+      <CartFooter cartItems={cartItems} />
     </CartContainer>
   );
 };

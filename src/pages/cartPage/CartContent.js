@@ -5,42 +5,46 @@ import PriceQuantitySum from "./PriceQuantitySum.js";
 
 const CartContent = (props) => {
   const { cart, removeFromCart } = useContext(AppContext);
-  const [sums, setSums] = useState({ goods: {} });
-  const [radio, setRadio] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    let temp = cart.map((item) => {
-      return { label: item.name, pickup: true, delivery: false };
-    });
-    setRadio(temp);
-  }, []);
-  const radioHandler = (currentName) => {
-    setRadio(
-      radio.map(({ label, pickup, delivery }) =>
-        currentName === label
-          ? { label: label, pickup: !pickup, delivery: !delivery }
-          : { label, pickup, delivery }
-      )
+    setCartItems(
+      cart.map((obj) => {
+        obj.pickup = true;
+        obj.delivery = false;
+        obj.sum = 0;
+        return obj;
+      })
     );
-  };
+  }, []);
   useEffect(() => {
-    props.getRadio(radio);
-  }, [radio]);
-  useEffect(() => {console.log(123)}, [sums])
-
-  const addToSums = (name, value) => {
-    setSums({
-      goods: Object.assign(sums.goods, { [name]: { label: name, sum: value } }),
+    setCartItems((prevState) => {
+      let temp = [];
+      for (let i = 0; i < cart.length; i++) {
+        temp[i] = prevState.filter((obj) => obj.name === cart[i].name)[0];
+      }
+      return temp;
     });
-  };
-  const removeFromSums = (name) => {
-    delete sums.goods[name];
-    setSums(sums);
+  }, [cart]);
+  useEffect(() => {
+    props.getCartItems(cartItems);
+  }, [cartItems])
+
+  const radioHandler = (currentName) => {
+    setCartItems((prevState) => {
+      return prevState.map((obj) => {
+        if (obj.name === currentName) {
+          obj.pickup = !obj.pickup;
+          obj.delivery = !obj.delivery;
+        }
+        return obj;
+      });
+    });
   };
 
   return (
-    <ItemsBody onClick={() => {console.log(sums)}}>
-      {cart.map((item, index) => (
+    <ItemsBody>
+      {cartItems.map((item) => (
         <ItemContainer key={item.name}>
           <Item>
             <ItemImage>
@@ -50,11 +54,7 @@ const CartContent = (props) => {
           </Item>
           <Receiving>
             <form>
-              <RadioBlock
-                onClick={() => {
-                  radio.forEach((item) => {});
-                }}
-              >
+              <RadioBlock>
                 <label>
                   <input
                     type="radio"
@@ -80,11 +80,10 @@ const CartContent = (props) => {
             </form>
           </Receiving>
           {/* Объединил Price, Quantity и Sum для того, чтобы сумму считать */}
-          <PriceQuantitySum item={item} addToSums={addToSums} />
+          <PriceQuantitySum item={item} setCartItems={setCartItems} />
           <RemoveButton
             onClick={() => {
               removeFromCart(item);
-              removeFromSums(item.name);
             }}
           >
             Убрать из корзины
