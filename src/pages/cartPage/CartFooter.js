@@ -31,8 +31,8 @@ const CartFooter = (props) => {
     return (
       <CartFooterContainer>
         <BannersContainer>
-          <Banner>Тут какой-то баннер</Banner>
-          <Banner>Тут какой-то баннер</Banner>
+          <Banner><img src="cartIcons/spasiboIcon.png" alt="" /></Banner>
+          <Banner><img src="cartIcons/tinkoffIcon.png" alt="" /></Banner>
         </BannersContainer>
         <PromoContainer>
           <h3>Промокод:</h3>
@@ -79,7 +79,12 @@ const BannersContainer = styled.div`
 const Banner = styled.div`
   margin: 0 5% 0 5%;
   height: 45%;
-  border: 1px solid black;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
 `;
 
 const PromoContainer = styled.div`
@@ -140,14 +145,13 @@ const OrderButton = styled.div`
   width: 100%;
   height: 15%;
   color: #ffffff;
-  border: 0.2rem solid #cc0000;
   border-radius: 0.5rem;
-  background-color: #e60000;
+  background: linear-gradient(to bottom,#ec1c24 0,#b0151b 100%);
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
 `;
 
 export default CartFooter;

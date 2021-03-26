@@ -1,8 +1,10 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import ToCart from "./ToCart.js";
 
 const Catalog = (props) => {
+  const { type } = useParams();
   /* ------------------------------------------------------------------- */
   let { price: filterPrice, firms: filterFirms } = props.filters;
   filterFirms = !filterFirms.length
@@ -28,7 +30,16 @@ const Catalog = (props) => {
           <CatalogItemImage>
             <img src={imgSrc} alt="" />
           </CatalogItemImage>
-          <CatalogItemName>{name}</CatalogItemName>
+          <CatalogItemName>
+            <Link
+              to={() => {
+                let url = `/catalog/${type}/` + name.replace(/\s+/g, "_");
+                return url;
+              }}
+            >
+              {name}
+            </Link>
+          </CatalogItemName>
           <PricePlusToCart>
             <CatalogItemPrice>{`${price} ₽`}</CatalogItemPrice>
             <ToCartContainer>
@@ -55,11 +66,13 @@ const CatalogItem = styled.div`
   width: 20%;
   margin: 2% 0 0 4%;
   border: 0.1rem solid #d4d4d4;
-  border-radius: 0.3rem;
+  border-left: none;
+  border-top: none;
+  border-radius: 0 0 0.5rem 0;
   padding-top: 1%;
 
   &:hover {
-    border: 0.1rem solid #ffffff;
+    /* border: 0.1rem solid #ffffff; */
     box-shadow: 0 0 0.5rem 0.1rem rgb(0, 0, 0, 0.2);
   }
 `;
@@ -72,12 +85,20 @@ const CatalogItemImage = styled.div`
   }
 `;
 const CatalogItemName = styled.div`
-  height: 30%;
-  font-size: 1rem;
+  height: 27%;
+  margin-top: 3%;
+  font-size: 0.9rem;
+  
+  a {
+    text-decoration: none;
+    color: #005baa;
+  }
 `;
 const CatalogItemPrice = styled.div`
   width: 40%;
   font-size: 1rem;
+  color: #ed1c24;
+  font-weight: 600;
 `;
 const ToCartContainer = styled.div`
   width: 37%;

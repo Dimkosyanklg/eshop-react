@@ -10,20 +10,20 @@ import { AppContext } from "../../../appContext/AppContext.js";
 
 const CatalogPage = () => {
   const { type } = useParams();
-  const { store, cart } = useContext(AppContext);
+  const { store } = useContext(AppContext);
   const [filters, setFilters] = useState({
     firms: [],
     price: { from: "", to: "" },
   });
+  const [goodsItem, setGoodsItem] = useState(store[type].goodsItem);
 
   useEffect(() => {
     setFilters({
       firms: [],
       price: { from: "", to: "" },
     });
+    setGoodsItem(store[type].goodsItem);
   }, [type]);
-
-  const { goodsItem } = store[type];
 
   const getFilters = (value) => {
     setFilters(value);

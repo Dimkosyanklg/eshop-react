@@ -10,7 +10,9 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderTopContainer>
-        <img src="/headerIcons/GitHubMark.png" alt="" />
+        <Link to="/">
+          <img src="/headerIcons/GitHubMark.png" alt="" />
+        </Link>
         <SearchBar>
           <form>
             <input type="search" />
@@ -54,8 +56,12 @@ const HeaderTopContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  img {
+  & > a {
     height: 70%;
+    /* object-fit: contain; */
+  }
+  & > a img {
+    height: 100%;
   }
 `;
 
