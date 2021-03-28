@@ -14,6 +14,11 @@ const CatalogItemPage = () => {
   const [goods, setGoods] = useState(store[type].goodsItem);
   useEffect(() => {
     setGoods(store[type].goodsItem);
+  }, [type]);
+
+  const [itemName, setItemName] = useState(item);
+  useEffect(() => {
+    setItemName(item);
   }, [item]);
 
   return (
@@ -21,8 +26,8 @@ const CatalogItemPage = () => {
       <GLOBAL_STYLE />
       <Header />
       <Container>
-        <CatalogItemBody goods={goods} itemName={item} />
-        <CatalogItemRecommended goods={goods} itemName={item} />
+        <CatalogItemBody goods={goods} itemName={itemName} />
+        <CatalogItemRecommended goods={goods} itemName={itemName} />
       </Container>
       <Footer />
     </>
