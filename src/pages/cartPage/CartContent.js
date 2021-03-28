@@ -28,7 +28,7 @@ const CartContent = (props) => {
   }, [cart]);
   useEffect(() => {
     props.getCartItems(cartItems);
-  }, [cartItems])
+  }, [cartItems]);
 
   const radioHandler = (currentName) => {
     setCartItems((prevState) => {

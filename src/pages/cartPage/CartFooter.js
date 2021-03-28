@@ -31,8 +31,12 @@ const CartFooter = (props) => {
     return (
       <CartFooterContainer>
         <BannersContainer>
-          <Banner><img src="cartIcons/spasiboIcon.png" alt="" /></Banner>
-          <Banner><img src="cartIcons/tinkoffIcon.png" alt="" /></Banner>
+          <Banner>
+            <img src="cartIcons/spasiboIcon.png" alt="" />
+          </Banner>
+          <Banner>
+            <img src="cartIcons/tinkoffIcon.png" alt="" />
+          </Banner>
         </BannersContainer>
         <PromoContainer>
           <h3>Промокод:</h3>
@@ -146,7 +150,7 @@ const OrderButton = styled.div`
   height: 15%;
   color: #ffffff;
   border-radius: 0.5rem;
-  background: linear-gradient(to bottom,#ec1c24 0,#b0151b 100%);
+  background: linear-gradient(to bottom, #ec1c24 0, #b0151b 100%);
   cursor: pointer;
   display: flex;
   justify-content: center;

@@ -22,7 +22,9 @@ const Sidebar = (props) => {
         goodsItem={props.goodsItem}
         getFilterParam={getFilterParam}
       />
-      <SendButton onClick={() => props.getFilters(filterParams)}>Подобрать</SendButton>
+      <SendButton onClick={() => props.getFilters(filterParams)}>
+        Подобрать
+      </SendButton>
     </SidebarContainer>
   );
 };

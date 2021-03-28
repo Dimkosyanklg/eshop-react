@@ -92,4 +92,3 @@ const Lower = styled.div`
 `;
 
 export default Footer;
-

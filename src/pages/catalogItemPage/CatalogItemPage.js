@@ -34,7 +34,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 2%;
-  height: 50vw;
+  height: 80vw;
 `;
 
 export default CatalogItemPage;

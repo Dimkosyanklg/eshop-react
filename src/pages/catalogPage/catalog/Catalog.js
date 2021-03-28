@@ -88,7 +88,7 @@ const CatalogItemName = styled.div`
   height: 27%;
   margin-top: 3%;
   font-size: 0.9rem;
-  
+
   a {
     text-decoration: none;
     color: #005baa;

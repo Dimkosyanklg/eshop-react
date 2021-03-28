@@ -12,7 +12,7 @@ ReactDOM.render(
       <Route exact path="/" component={MainPage} />
       <Route exact path="/catalog/:type" component={CatalogPage} />
       <Route exact path="/cart" component={CartPage} />
-      <Route path="/catalog/:type/:item" component={CatalogItemPage} />
+      <Route exact path="/catalog/:type/:item" component={CatalogItemPage} />
     </AppContextProvider>
   </BrowserRouter>,
   document.getElementById("root")

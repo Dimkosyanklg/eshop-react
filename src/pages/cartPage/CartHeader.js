@@ -23,18 +23,18 @@ function getNoun(number, one, two, five) {
 const CartHeader = () => {
   const { cart } = useContext(AppContext);
   return (
-      <>
-    <CartHead>
-      Корзина ({cart.length}{" "}
-      {getNoun(cart.length, "товар", "товара", "товаров")})
-    </CartHead>
-    <ItemsHead>
+    <>
+      <CartHead>
+        Корзина ({cart.length}{" "}
+        {getNoun(cart.length, "товар", "товара", "товаров")})
+      </CartHead>
+      <ItemsHead>
         <Item>Товар</Item>
         <Receiving>Способ получения</Receiving>
         <Price>Цена</Price>
         <Quantity>Количество</Quantity>
         <Sum>Сумма</Sum>
-    </ItemsHead>
+      </ItemsHead>
     </>
   );
 };
