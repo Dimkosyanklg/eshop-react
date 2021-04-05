@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { GLOBAL_STYLE } from "../../constants/GLOBAL_STYLE.js";
 import Header from "../../header/Header.js";
 import Footer from "../../footer/Footer.js";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import CatalogItemBody from "./CatalogItemBody.js";
 import CatalogItemRecommended from "./CatalogItemRecommended.js";
 import { AppContext } from "../../appContext/AppContext.js";
@@ -11,23 +11,32 @@ import { AppContext } from "../../appContext/AppContext.js";
 const CatalogItemPage = () => {
   const { store } = useContext(AppContext);
   const { type, item } = useParams();
-  const [goods, setGoods] = useState(store[type].goodsItem);
-  useEffect(() => {
-    setGoods(store[type].goodsItem);
-  }, [type]);
+  const LOCATION = useLocation();
 
-  const [itemName, setItemName] = useState(item);
+  const [goodsItem, setGoodsItem] = useState(
+    store[type].goodsItem.filter(
+      (obj) => obj.name === item.replace(/_/g, " ")
+    )[0]
+  );
   useEffect(() => {
-    setItemName(item);
-  }, [item]);
+    setGoodsItem(
+      store[type].goodsItem.filter(
+        (obj) => obj.name === item.replace(/_/g, " ")
+      )[0]
+    );
+    window.scrollTo(0, 0);
+  }, [LOCATION.pathname]);
 
   return (
     <>
       <GLOBAL_STYLE />
       <Header />
       <Container>
-        <CatalogItemBody goods={goods} itemName={itemName} />
-        <CatalogItemRecommended goods={goods} itemName={itemName} />
+        <CatalogItemBody goodsItem={goodsItem} />
+        <CatalogItemRecommended
+          goodsItem={goodsItem}
+          goods={store[type].goodsItem}
+        />
       </Container>
       <Footer />
     </>

@@ -6,15 +6,6 @@ import { CATALOG_ITEM_INFO } from "../../constants/CATALOG_ITEM_INFO.js";
 
 const CatalogItemBody = (props) => {
   const { cart, addToCart, removeFromCart } = useContext(AppContext);
-  const [item, setItem] = useState({});
-  useState(() => {
-    setItem(
-      props.goods.filter(
-        (obj) => obj.name === props.itemName.replace(/_/g, " ")
-      )[0]
-    );
-    window.scrollTo(0, 0);
-  }, []);
 
   const [button, setButton] = useState({
     status: "outside",
@@ -22,7 +13,7 @@ const CatalogItemBody = (props) => {
   });
   useEffect(() => {
     setButton(() =>
-      findIndex(cart, item) !== -1
+      findIndex(cart, props.goodsItem) !== -1
         ? { status: "inside", label: "УБРАТЬ ИЗ КОРЗИНЫ" }
         : { status: "outside", label: "В КОРЗИНУ" }
     );
@@ -53,18 +44,18 @@ const CatalogItemBody = (props) => {
       <ContainerItem>
         <ImageContainer>
           <ImageBlock>
-            <img src={item.imgSrc} alt="" />
+            <img src={props.goodsItem.imgSrc} alt="" />
           </ImageBlock>
         </ImageContainer>
         <DescriptionContainer>
-          <NameContainer>{item.name}</NameContainer>
-          <PriceContainer>{`${item.price} ₽`}</PriceContainer>
+          <NameContainer>{props.goodsItem.name}</NameContainer>
+          <PriceContainer>{`${props.goodsItem.price} ₽`}</PriceContainer>
           {button.status === "outside" ? (
-            <ToCartButton onClick={() => addToCart(item)}>
+            <ToCartButton onClick={() => addToCart(props.goodsItem)}>
               {button.label}
             </ToCartButton>
           ) : (
-            <RemoveFromCartButton onClick={() => removeFromCart(item)}>
+            <RemoveFromCartButton onClick={() => removeFromCart(props.goodsItem)}>
               {button.label}
             </RemoveFromCartButton>
           )}
@@ -73,11 +64,12 @@ const CatalogItemBody = (props) => {
       <InfoContainer>
         {CATALOG_ITEM_INFO.map((item, index) =>
           info[item].active ? (
-            <InfoItemActive>
+            <InfoItemActive key={index}>
               <InfoItemLabel>{item}</InfoItemLabel>
             </InfoItemActive>
           ) : (
             <InfoItem
+              key={index}
               onClick={() => {
                 setInfo((prevState) => {
                   let newState = {};

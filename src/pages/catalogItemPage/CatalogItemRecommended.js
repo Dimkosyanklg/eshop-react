@@ -17,13 +17,13 @@ const CatalogItemRecommended = (props) => {
   useEffect(() => {
     setRecommended(() => {
       let recGoods = props.goods.filter(
-        (obj) => obj.name !== props.itemName.replace(/_/g, " ")
+        (obj) => obj.name !== props.goodsItem.name
       );
       let randomIndex = getRandom(0, recGoods.length - 1, 5);
       let recommended = randomIndex.map((el) => recGoods[el]);
       return recommended;
     });
-  }, []);
+  }, [props.goodsItem]);
 
   return (
     <Container>
