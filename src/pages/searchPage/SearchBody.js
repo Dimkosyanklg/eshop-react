@@ -27,11 +27,7 @@ const SearchBody = (props) => {
     return <NoMatch>По вашему запросу не найдено ни одного товара</NoMatch>;
   }
   return (
-    <SearchContainer
-      onClick={() => {
-        console.log(searchGoods);
-      }}
-    >
+    <SearchContainer>
       {searchGoods.map(({ id, name, price, imgSrc, firm, type }) => (
         <SearchItem key={name}>
           <SearchItemImage>
