@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import { AppContext } from "../appContext/AppContext.js";
@@ -6,6 +6,12 @@ import { MENU_BUTTONS } from "../constants/MENU_BUTTONS.js";
 
 const Header = () => {
   const { cart } = useContext(AppContext);
+
+  const [searchBarValue, setSearchBarValue] = useState("");
+
+  const searchBarHandler = (e) => {
+    setSearchBarValue(e.target.value);
+  };
 
   return (
     <HeaderContainer>
@@ -15,10 +21,16 @@ const Header = () => {
         </Link>
         <SearchBar>
           <form>
-            <input type="search" />
-            <button type="submit">
-              <img src="/headerIcons/SearchIcon.png" alt="" />
-            </button>
+            <input type="text" onInput={(e) => searchBarHandler(e)} />
+            <SearchButton>
+              {searchBarValue === "" ? (
+                <img src="/headerIcons/SearchIcon.png" alt="" />
+              ) : (
+                <Link to={"/search/" + searchBarValue.replace(/\s+/g, "_")}>
+                  <img src="/headerIcons/SearchIcon.png" alt="" />
+                </Link>
+              )}
+            </SearchButton>
           </form>
         </SearchBar>
         <ShoppingCartContainer>
@@ -93,24 +105,30 @@ const SearchBar = styled.div`
   input {
     height: 100%;
     width: 93%;
+    padding: 0 2%;
     outline: none;
     border: 0;
     border-radius: 0.4rem 0 0 0.4rem;
     font-size: 1.3rem;
   }
-  button {
+`;
+const SearchButton = styled.div`
+  height: 100%;
+  width: 7%;
+  border-radius: 0 0.4rem 0.4rem 0;
+  background-color: #d4d4d4;
+  cursor: pointer;
+
+  a {
     height: 100%;
-    width: 7%;
-    outline: none;
-    border: 0;
-    padding: 0;
-    border-radius: 0 0.4rem 0.4rem 0;
-    cursor: pointer;
-    img {
-      height: 35%;
-      width: 35%;
-      object-fit: contain;
-    }
+    width: 100%;
+  }
+
+  img {
+    height: 35%;
+    width: 35%;
+    margin: 30% 30%;
+    object-fit: contain;
   }
 `;
 
