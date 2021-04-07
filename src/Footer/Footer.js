@@ -19,10 +19,10 @@ const Footer = () => (
         </FooterItem>
       ))}
       <FooterItem>
-        <FooterItemHeader>{FOOTER_LIST_CONTACTS[0].header}</FooterItemHeader>
+        <FooterItemHeader>{FOOTER_LIST_CONTACTS.header}</FooterItemHeader>
         <FooterItemContent>
           <ul>
-            {FOOTER_LIST_CONTACTS[0].content.map(({ upper, lower }, index) => (
+            {FOOTER_LIST_CONTACTS.content.map(({ upper, lower }, index) => (
               <li key={index}>
                 <Upper>{upper}</Upper>
                 <Lower>{lower}</Lower>

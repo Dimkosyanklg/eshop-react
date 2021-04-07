@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { AppContext } from "../../appContext/AppContext";
 import { findIndex } from "lodash";
 import { CATALOG_ITEM_INFO } from "../../constants/CATALOG_ITEM_INFO.js";
+import { useLocation } from "react-router";
 
 const CatalogItemBody = (props) => {
   const { cart, addToCart, removeFromCart } = useContext(AppContext);
@@ -18,6 +19,13 @@ const CatalogItemBody = (props) => {
         : { status: "outside", label: "В КОРЗИНУ" }
     );
   }, [cart]);
+  useEffect(() => {
+    setButton(() =>
+      findIndex(cart, props.goodsItem) !== -1
+        ? { status: "inside", label: "УБРАТЬ ИЗ КОРЗИНЫ" }
+        : { status: "outside", label: "В КОРЗИНУ" }
+    );
+  }, [props.goodsItem]);
 
   const [info, setInfo] = useState(
     CATALOG_ITEM_INFO.reduce((obj, item) => {
@@ -55,7 +63,9 @@ const CatalogItemBody = (props) => {
               {button.label}
             </ToCartButton>
           ) : (
-            <RemoveFromCartButton onClick={() => removeFromCart(props.goodsItem)}>
+            <RemoveFromCartButton
+              onClick={() => removeFromCart(props.goodsItem)}
+            >
               {button.label}
             </RemoveFromCartButton>
           )}
