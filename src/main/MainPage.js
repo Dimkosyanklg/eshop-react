@@ -9,7 +9,7 @@ const MainPage = (props) => {
     <>
       <GLOBAL_STYLE />
       <Header />
-      <Test>ТЕСТ</Test>
+      <Test>Мейн не доделан. Поиск, корзина, туризм, спорт — кликабельны</Test>
       <Footer />
     </>
   );

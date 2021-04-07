@@ -17,6 +17,8 @@ const CartContent = (props) => {
       })
     );
   }, []);
+  
+  /* Обновленный стейт с новыми полями */
   useEffect(() => {
     setCartItems((prevState) => {
       let temp = [];

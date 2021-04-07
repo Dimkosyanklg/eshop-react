@@ -22,16 +22,6 @@ const PriceQuantitySum = (props) => {
       });
     });
   }, [sum]);
-  useEffect(() => {
-    props.setCartItems((prevState) => {
-      return prevState.map((obj) => {
-        if (obj.name === props.item.name) {
-          obj.sum = sum;
-        }
-        return obj;
-      });
-    });
-  }, []);
 
   return (
     <>
