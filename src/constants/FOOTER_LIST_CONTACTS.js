@@ -1,3 +1,5 @@
+import { baseUrl } from "./BASE_URL";
+
 export const FOOTER_LIST_CONTACTS = {
   header: "Контакты",
   content: [
@@ -17,11 +19,11 @@ export const FOOTER_LIST_CONTACTS = {
       upper: "Мы в соцсетях",
       lower: (
         <>
-          <img src="/footerIcons/Fb.svg" alt="" />
-          <img src="/footerIcons/Vk.svg" alt="" />
-          <img src="/footerIcons/Insta.svg" alt="" />
-          <img src="/footerIcons/Ok.svg" alt="" />
-          <img src="/footerIcons/Youtube.svg" alt="" />
+          <img src={baseUrl + "/footerIcons/Fb.svg"} alt="" />
+          <img src={baseUrl + "/footerIcons/Vk.svg"} alt="" />
+          <img src={baseUrl + "/footerIcons/Insta.svg"} alt="" />
+          <img src={baseUrl + "/footerIcons/Ok.svg"} alt="" />
+          <img src={baseUrl + "/footerIcons/Youtube.svg"} alt="" />
         </>
       ),
     },
@@ -29,8 +31,8 @@ export const FOOTER_LIST_CONTACTS = {
       upper: "Скачайте наше приложение",
       lower: (
         <>
-          <img src="/footerIcons/AppleStoreBadge.png" alt="" />
-          <img src="/footerIcons/GooglePlayBadge.png" alt="" />
+          <img src={baseUrl + "/footerIcons/AppleStoreBadge.png"} alt="" />
+          <img src={baseUrl + "/footerIcons/GooglePlayBadge.png"} alt="" />
         </>
       ),
     },

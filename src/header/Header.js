@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import { AppContext } from "../appContext/AppContext.js";
+import { baseUrl } from "../constants/BASE_URL.js";
 import { MENU_BUTTONS } from "../constants/MENU_BUTTONS.js";
 
 const Header = () => {
@@ -17,17 +18,17 @@ const Header = () => {
     <HeaderContainer>
       <HeaderTopContainer>
         <Link to="/">
-          <img src="/headerIcons/GitHubMark.png" alt="" />
+          <img src={baseUrl + "/headerIcons/GitHubMark.png"} alt="" />
         </Link>
         <SearchBar>
           <form>
             <input type="text" onInput={(e) => searchBarHandler(e)} />
             <SearchButton>
               {searchBarValue === "" ? (
-                <img src="/headerIcons/SearchIcon.png" alt="" />
+                <img src={baseUrl + "/headerIcons/SearchIcon.png"} alt="" />
               ) : (
                 <Link to={"/search/" + searchBarValue.replace(/\s+/g, "_")}>
-                  <img src="/headerIcons/SearchIcon.png" alt="" />
+                  <img src={baseUrl + "/headerIcons/SearchIcon.png"} alt="" />
                 </Link>
               )}
             </SearchButton>
@@ -35,7 +36,7 @@ const Header = () => {
         </SearchBar>
         <ShoppingCartContainer>
           <Link to="/cart">
-            <img src="/headerIcons/ShoppingCartIcon.png" alt="" />
+            <img src={baseUrl + "/headerIcons/ShoppingCartIcon.png"} alt="" />
           </Link>
           {cart.length ? (
             <ShoppingCartQuantity>{cart.length}</ShoppingCartQuantity>

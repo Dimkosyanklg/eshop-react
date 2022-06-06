@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { baseUrl } from "../../constants/BASE_URL";
 
 const CartFooter = (props) => {
   const getPrices = (item) => {
@@ -32,10 +33,10 @@ const CartFooter = (props) => {
       <CartFooterContainer>
         <BannersContainer>
           <Banner>
-            <img src="cartIcons/spasiboIcon.png" alt="" />
+            <img src={baseUrl + "cartIcons/spasiboIcon.png"} alt="" />
           </Banner>
           <Banner>
-            <img src="cartIcons/tinkoffIcon.png" alt="" />
+            <img src={baseUrl + "cartIcons/tinkoffIcon.png"} alt="" />
           </Banner>
         </BannersContainer>
         <PromoContainer>

@@ -7,8 +7,9 @@ import CatalogPage from "./pages/catalogPage/catalog/CatalogPage.js";
 import CartPage from "./pages/cartPage/CartPage.js";
 import CatalogItemPage from "./pages/catalogItemPage/CatalogItemPage.js";
 import SearchPage from "./pages/searchPage/SearchPage.js";
+
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename={"eshop-react"}>
     <AppContextProvider>
       <Route exact path="/" component={MainPage} />
       <Route exact path="/catalog/:type" component={CatalogPage} />
